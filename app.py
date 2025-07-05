@@ -3,6 +3,7 @@ import joblib
 
 # Load your saved model
 model = joblib.load("model.pkl")
+scaler = joblib.load("scaler.pkl")
 
 app = Flask(__name__)
 
