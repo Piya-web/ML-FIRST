@@ -23,10 +23,11 @@ def predict():
         return jsonify({"error": "Invalid input: iq and cgpa must be numeric."}), 400
 
     try:
-        prediction = model.predict([[iq, cgpa]])
+        # ✅ Transform input using the scaler before prediction
+        scaled_input = scaler.transform([[iq, cgpa]])
+        prediction = model.predict(scaled_input)
         result = int(prediction[0])
 
-        # Map result to message
         if result == 1:
             message = "Might get placed"
         else:
